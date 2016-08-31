@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Meu primeiro Web Service REST</title>
+<script type="text/javascript" src="/WebService/jquery-3.1.0.js"></script>
+</head>
+<body>
+	<form>
+		<input type="text" id="meucep" />
+		<input type="button" value="Buscar" onclick="procurarCEP();" />
+	</form>
+		<br />
+		<table id="table">
+			<caption>Web Service REST</caption>
+			<thead>
+				<tr>
+					<th>CEP</th>
+					<th>Rua</th>
+					<th>Número</th>
+					<th>Bairro</th>
+					<th>Estado</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><span id="cep"></span> </td>
+					<td><span id="rua"></span></td>
+					<td><span id="numero"></span></td>
+					<td><span id="bairro"></span></td>
+					<td><span id="estado"></span></td>
+				</tr>
+			</tbody>
+		</table>
+</body>
+<script>
+$(document).ready(
+	function procurarCEP(){
+		var txtCEP = $("#meucep").val();
+		var cep = $("#cep");
+		var numero = $("#numero");
+		var rua = $("#rua");
+		var bairro = $("#bairro");
+		var estado = $("#estado");
+	}
+);
+</script>
+</html>
