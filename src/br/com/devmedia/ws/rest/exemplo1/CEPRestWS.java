@@ -14,8 +14,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriInfo;
 
-import org.hibernate.validator.constraints.Length;
-
 @Path("ceprest")
 public class CEPRestWS {
 	
