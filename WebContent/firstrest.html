@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>FIRST Rest </title>
+<script src="/WebService/jquery-3.1.0.js"></script>
+</head>
+<body>
+		<input type="text" id="meucep"/>
+		<input type="submit" value="BUSCAR" onclick="procurarCEP();"/>
+		<input type="submit" value="ENVIAR" onclick="return enviarCEP();"/>
+	<br />
+	<table id="table-1">
+		<thead>
+			<tr>
+				<th>CEP</th>
+				<th>Rua</th>
+				<th>Numero</th>
+				<th>Bairro</th>
+				<th>Estado</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><span id="cep"></span></td>
+				<td><span id="rua"></span></td>
+				<td><span id="numero"></span></td>
+				<td><span id="bairro"></span></td>
+				<td><span id="estado"></span></td>
+			</tr>
+		</tbody>
+	</table>
+<script>
+
+function procurarCEP(){
+	  var txtcep = $("#meucep").val();
+	  var cep = $("#cep");
+	  var rua = $("#rua");
+	  var numero = $("#numero");
+	  var bairro = $("#bairro");
+	  var estado = $("#estado");
+
+	  $.ajax("http://cjunior5-1:8080/WebService/webservice/ceprest/getCep/"+txtcep)
+			.done(function(data){
+			  cep.html(data.cep);
+			  rua.html(data.rua);
+			  numero.html(data.numero);
+			  bairro.html(data.bairro);
+			  estado.html(data.estado);
+			})
+			.fail(function(){
+				alert("ERROR!");
+			});
+}
+
+function enviarCEP(){
+	$.ajax({
+			url:"http://cjunior5-1:8080/WebService/webservice/ceprest/setCep/",
+			type:"POST",
+			contentType: 'application/json',
+			data: JSON.stringify({"cep":"24466142","rua":"Av. Joaquim de Oliveira","numero":3930,"bairro":"Boa Vista","estado":"Rio de Janeiro"}), 
+			dataType:'json'
+		  }).done(function(){
+			  alert("CEP enviado com sucesso!")
+		  }).fail(function(){
+			  alert("ERROR! CEP não enviado");
+		  });
+};
+</script>
+</body>
+</html>
